@@ -29,21 +29,23 @@ const Hotels = ({ history }) => {
 			HotelsContext
 		);
 
-	React.useEffect(() => {
+	React.useEffect(() => { 
+		if (hotels && hotels.length > 0)
+			return;
 		getHotelsRequest()
 	}, [ getHotelsRequest ]);
 
 	return !loading && !error ? (
 		<>
 			{history && <SubHeader title='Your Lists' />}
-			<HotelsItemsWrapper>
+			<HotelItemsWrapper>
 				{hotels && 
 					hotels.map(hotel => (
 						<HotelLink key={hotel.id} to={`hotel/${hotel.id}`}>
 							<HotelItem data={hotel} />
 						</HotelLink>
 					))}
-			</HotelsItemsWrapper>
+			</HotelItemsWrapper>
 		</>
 	) : (
 		<Alert>{loading ? 'Loading...' : error}</Alert>

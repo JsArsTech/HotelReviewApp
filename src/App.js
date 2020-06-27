@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Route, Switch } from 'react-router-dom';
-import GlobalContext from '../context/GlobalContext';
-import Header from './Header/Header';
-import Hotels from './Hotels/Hotels';
-import Detail from './Detail/Detail';
-import Form from './Form/Form';
+import { Router, Route, Switch } from 'react-router-dom';
+import GlobalContext from './context/GlobalContext';
+import Header from './components/Header/Header';
+import Hotels from './components/Hotels/Hotels';
+import Detail from './components/Detail/Detail';
+import Form from './components/Form/Form';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const AppWrapper = style.div`
+const AppWrapper = styled.div`
   text-align: center;
 `;
 
@@ -29,11 +29,13 @@ const App = () => (
     <AppWrapper>
       <Header />
       <GlobalContext>
+        
         <Switch>
           <Route exact path='/' component={Hotels} />
           <Route path='/hotel/:id/new' component={Form} />
           <Route path='/hotel/:id' component={Detail} />
         </Switch>
+        
       </GlobalContext>
     </AppWrapper>
   </>

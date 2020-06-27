@@ -15,7 +15,7 @@ const FormWrapper = styled.div`
 
 const SubmitButton = styled(Button)`
 	background: blue;
-	color: blue;
+	color: white;
 	margin: 2% 0;
 `;
 
@@ -60,7 +60,7 @@ const Form = ({ match, history }) => {
 						placeholder='0'
 						max={5}
 						value={rating}						
-						handleOnChange={setTitle}
+						handleOnChange={setRating}
 					/>		
 					<FormInput
 						id='description'

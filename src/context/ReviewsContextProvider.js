@@ -10,11 +10,11 @@ const initialValue = {
 };
 
 
-const reducer = (value, action) {
+const reducer = (value, action) => {
 
-	swicth (action.type) 
+	switch (action.type) 
 	{
-		case 'GET_REVIEWS_SUCESS':
+		case 'GET_REVIEWS_SUCCESS':
 			return {
 				...value,
 				reviews: action.payload,

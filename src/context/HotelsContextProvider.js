@@ -17,7 +17,7 @@ const reducer = (value, action) => {
 			return {
 				...value,
 				hotels: action.payload,
-				loading; false
+				loading: false
 			};
 		case 'GET_HOTELS_ERROR':
 			return {
@@ -46,7 +46,7 @@ const reducer = (value, action) => {
 
 const HotelsContextProvider = ({ children }) => {
 
-	const [value, dispatch] = React.useReducer(reduce, initialValue);
+	const [value, dispatch] = React.useReducer(reducer, initialValue);
 
 	const getHotelsRequest = async () => {
 
@@ -83,3 +83,5 @@ const HotelsContextProvider = ({ children }) => {
 		</HotelsContext.Provider>
 	);
 };
+
+export default HotelsContextProvider;

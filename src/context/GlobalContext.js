@@ -12,3 +12,5 @@ const GlobalContext = ({ children }) => {
 		</HotelsContextProvider>
 	);
 };
+
+export default GlobalContext;

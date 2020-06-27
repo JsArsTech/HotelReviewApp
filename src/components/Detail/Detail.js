@@ -19,23 +19,28 @@ const Alert = styled.span`
 
 const Detail = ({ match, history }) => {
 
-	const { hotel, getHotelRequest } = 
-		React.useContext(HotelsContext); 
-	const { loading, error, reviews, getReviewsRequest } = 	
+	const { loading: loadingHotels, hotel, getHotelRequest } = React.useContext(HotelsContext); 
+	const { loading: loadingReviews, error, reviews, getReviewsRequest } = 	
 		React.useContext(ReviewsContext);
 
+	console.log(hotel);
+	console.log(reviews);
+
 	React.useEffect(() => {
-		getHotelRequest(match.params.id);
-		if (!reviews.length > 0) {
+
+		if ( loadingHotels ) 
+			getHotelRequest(match.params.id);
+
+		if ( loadingReviews ) {
 			getReviewsRequest(match.params.id);		
 		}
 	}, [ getHotelRequest, getReviewsRequest, 
 			match.params.id, reviews.length ]);
 
-	return !loading && !error ? (
+	return !loadingHotels && !error ? (
 		<>
-			{history && hotel && (
-
+			{history && hotel && (		
+				<>	
 				<SubHeader 
 					goBack={() => history.goBack()}
 					title={hotel.title}
@@ -45,11 +50,12 @@ const Detail = ({ match, history }) => {
 					{reviews && 
 						reviews.map(review => <ReviewItem key={review.id} data={review} />)}
 				</ReviewsWrapper>
+				</>
 			)}
 		</>
-	) : (
-		<Alert>{loading ? 'Loading...' : error}</Alert>
-	);
+		) : (
+			<Alert>{ loadingHotels ? 'Loading...' : error }</Alert>
+		);
 };
 
 export default Detail;
